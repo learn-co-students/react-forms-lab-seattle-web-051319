@@ -43,7 +43,7 @@ describe("<LoginForm />", () => {
     it("should call the prevent the default action when the form is being submitted", () => {
       let spy = sinon.spy();
       const wrapper = mount(<App />);
-      wrapper.find("form").simulate("submit", { preventDefault: spy });
+      wrapper.find("form").simulate("submit", { preventDefault: spy, persist: noop });
 
       expect(
         spy.calledOnce,
@@ -65,7 +65,7 @@ describe("<LoginForm />", () => {
           value: "supersecret"
         }
       });
-      wrapper.find("form").simulate("submit", { preventDefault: noop });
+      wrapper.find("form").simulate("submit", { preventDefault: noop, persist: noop });
       expect(
         spy.called,
         "The `handleLogin` prop is being called with one or more empty form fields"
